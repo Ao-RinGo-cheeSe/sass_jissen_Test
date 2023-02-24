@@ -1,0 +1,726 @@
+@use "../global" as *;
+
+html {
+  font-size: 10px;
+}
+
+a {
+  color: $Black;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  object-fit: cover;
+}
+
+.section {
+  padding: 7.0rem 0;
+}
+
+.black__ttl {
+  @include ttl;
+}
+
+.white__ttl {
+  @include ttl($ttl__bg-color: $Black, $ttl__color: $White);
+}
+
+.btn a {
+  padding: 1.5rem 3.5rem;
+  font-size: 2.0rem;
+  background-color: $Black;
+  color: $White;
+  display: inline-block;
+}
+
+/* Header */
+.header {
+  height: 9vh;
+  background-color: $White;
+  @include flex;
+  &-wrap {
+    width: 95%;
+    margin: 0 auto;
+    @include flex($justify: space-between);
+    &__ttl a {
+      @include flex;
+    }  // &__ttl a
+    &__ttl__ttl {
+      margin-left: 1.0rem;
+      font-size: 2.0rem;
+      color: $White;
+      -webkit-text-stroke: 1px $Gray;
+      & span {
+        margin-left: 3.0rem;
+      }  // & span
+    }  // &__ttl__ttl
+    &__nav {
+      &__list {
+        @include flex;
+        &__item {
+          margin: 0 1.0rem;
+          &:last-child {
+            margin-right: 0;
+          }  //&:last-child
+          & a {
+            font-size: 2.5rem;
+            color: $Gray;
+          }  // & a
+        }  // &__item
+      }  // &__list
+    }  // &__nav
+  }  // &-wrap
+  .drawer {
+    visibility: hidden;
+  }  // .drawer
+}  // .header
+
+.item__contact-btn a {
+  padding: 1.0rem 3.0rem;
+  background-color: $Gray;
+  color: $White;
+}
+
+/* Header(Breakpoint) */
+.header {
+  .drawer {
+    @include mq(tab) {
+      visibility: visible;
+      width: 4.0rem;
+      position: absolute;
+      top: 3vh;
+      right: 15px;
+      border-top: solid 2px $Gray;
+      cursor: pointer;
+      z-index: 100;
+    }
+    @include mq(sp) {
+      width: 3.0rem;
+    }
+    &::before,::after {
+      @include mq(tab) {
+        content: "";
+        display: block;
+        width: 4.0rem;
+        background: $Gray;
+        height: 2px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transition: all 0.5s;
+      }
+      @include mq(sp) {
+        width: 3.0rem;
+      }
+    }  // &::before,::after
+    &::before {
+      @include mq(tab) {
+        top: 1.5rem;
+      }
+      @include mq(sp) {
+        top: 1.2rem;
+      }
+    }  // &::before
+    &::after {
+      @include mq(tab) {
+        top: 3.0rem;
+      }
+      @include mq(sp) {
+        top: 2.4rem;
+      }
+    }  // &::after
+  }  // .drawer
+}
+
+body.nav-open header .drawer {
+  border-top: 0;
+  &::before {
+    @include mq(tab) {
+      top: 9px;
+      transform: rotate(-45deg);
+    }
+  }  // &::before
+  &:after {
+    @include mq(tab) {
+      top: 9px;
+      transform: rotate(45deg);
+    }
+  }  // &:after
+}
+
+header .header-wrap__nav {
+  @include mq(tab) {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    background: $White;
+  }
+  &__list {
+    @include mq(tab) {
+      @include flex;
+      flex-direction: column;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+    }
+    &__item {
+      @include mq(tab) {
+        margin: 15% 0;
+      }
+      & a {
+        @include mq(tab) {
+          font-size: 5.0rem;
+        }
+        @include mq(sp) {
+          font-size: 3.5rem;
+        }
+      }  // & a
+    }  // &__item
+  }  // &__list
+}
+
+/* Home */
+.home {
+  height: 91vh;
+  background-color: $bBlue;
+  &-wrap {
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    @include flex;
+    &__ttl {
+      font-size: 6.0rem;
+      color: $White;
+      & p {
+        font-size: 3.0rem;
+        letter-spacing: 1.5rem;
+      }  // & p
+    }  // &__ttl
+    &__img img {
+      width: auto;
+      height: 85vh;
+    }  // &__img img
+  }  // &-wrap
+}
+
+/* Home(Breakpoint) */
+.home {
+  &-wrap {
+    @include mq(pc) {
+      @include flex($justify: flex-end);
+      position: relative;
+    }
+    &__ttl {
+      @include mq(pc) {
+        position: absolute;
+        left: 0;
+        top: 62%;
+      }
+      @include mq(tab) {
+        font-size: 5.0rem;
+        top: 72%;
+      }
+      @include mq(sp) {
+        font-size: 4.0rem;
+        top: 65%;
+      }
+      & p {
+        @include mq(tab) {
+          font-size: 2.5rem;
+          letter-spacing: 1.2rem;
+        }
+        @include mq(sp) {
+          font-size: 2.0rem;
+          letter-spacing: 1.0rem;
+        }
+      }  // & p
+    }  // &__ttl
+    &__img {
+      & img {
+        @include mq(pc) {
+          width: auto;
+          height: 80vh;
+        }
+        @include mq(sp) {
+          width: auto;
+          height: 60vh;
+        }
+      }  // & img
+    }  // &__img
+  }  // &-wrap
+}
+
+/* About */
+.about {
+  background-color: $wwGray;
+  &-wrap {
+    @include wrap;
+    &__txt {
+      padding-left: 3.5rem;
+      padding-bottom: 3.5rem;
+      font-size: 2.0rem;
+      color: $White;
+      & span {
+        padding-bottom: 1.5rem;
+        display: inline-block;
+      }  // & span
+    }  // &__txt
+    &__content {
+      margin: 0 3.5rem;
+      @include flex($justify: space-between);
+      &__block {
+        width: 40%;
+        padding: 3.0rem;
+        background-color: $White;
+        &__img {
+          width: 100%;
+          & img {
+            width: 100%;
+            height: auto;
+            border: solid 1px $wGray;
+          }  // & img
+        }  // &__img
+        &__txt {
+          padding: 0 3.0rem;
+          &__top {
+            padding: 1.5rem 0;
+            font-size: 2.0rem;
+          }  // &__top
+          &__bottom {
+            font-size: 3.0rem;
+            font-weight: bold;
+            @include flex($justify: space-between);
+          }  // &__bottom
+        }  // &__txt
+      }  // &__block
+    }  // &__content
+  }  // &-wrap
+}
+
+.__tab2 {
+  display: none
+}
+
+/* About(Breakpoint) */
+.about {
+  &-wrap {
+    @include mq(tab) {
+      @include flex;
+      flex-direction: column;
+    }
+    &__txt {
+      @include mq(pc) {
+        font-size: 1.8rem;
+      }
+      @include mq(tab) {
+        padding-left: 0;
+        font-size: 1.5rem;
+        text-align: center;
+      }
+      & span {
+        @include mq(tab) {
+          padding-bottom: 0;
+        }
+      }  // & span
+    }  // &__txt
+    &__content {
+      @include mq(tab) {
+        padding: 0;
+        @include flex;
+        flex-direction: column;
+      }
+      @include mq(sp) {
+        margin: 0 auto;
+      }
+      &__block {
+        @include mq(pc) {
+          padding: 2.0rem;
+        }
+        @include mq(tab) {
+          width: 90%;
+          margin-bottom: 3.5rem;
+          padding: 2.0rem;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+        &__txt {
+          &__top {
+            @include mq(tab) {
+              padding: 1.5rem 0 1.0rem 0;
+              font-size: 1.5rem;
+            }
+          }  // &__top
+          &__bottom {
+            @include mq(tab) {
+              font-size: 2.5rem;
+            }
+          }  // &__bottom
+        }  // &__txt
+      }  // &__block
+    }  // &__content
+  }  // &-wrap
+}
+
+.__tab2 {
+  @include mq(tab) {
+    display: inline-block;
+  }
+}
+
+/* News */
+.news {
+  background-color: $wwwGray;
+  &-wrap {
+    @include wrap;
+    &__content {
+      margin: 0 3.5rem;
+      @include flex($justify: space-between);
+      &__block {
+        width: 25%;
+        padding: 2.0rem;
+        background-color: $White;
+        &__img {
+          width: 100%;
+          & img {
+            width: 100%;
+            height: auto;
+            border: solid 1px $wGray;
+          }  // & img
+        }  // &__img
+        &__txt {
+          padding: 0 1.5rem;
+          font-size: 1.5rem;
+          &__top {
+            padding-top: 1.0rem;
+            padding-bottom: 1.5rem;
+          }  // &__top
+          &__bottom {
+            @include flex($justify: space-between);
+          }  // &__bottom
+        }  // &__txt
+      }  // &__block
+    }  // &__content
+    &__btn {
+      margin-top: 3.5rem;
+      text-align: center;
+    }  // &__btn
+  }  // &-wrap
+}
+
+.block__visibility {
+  display: none;
+}
+
+/* News(Breakpoint) */
+.news {
+  &-wrap {
+    @include mq(tab) {
+      @include flex;
+      flex-direction: column;
+    }
+    &__content {
+      @include mq(pc) {
+        @include flex($justify: space-between);
+        flex-wrap: wrap;
+      }
+      @include mq(tab) {
+        padding: 0;
+        @include flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+      }
+      @include mq(sp) {
+        margin: 0 auto;
+      }
+      &__block {
+        @include mq(pc) {
+          width: 40%;
+        }
+        @include mq(tab) {
+          width: 90%;
+        }
+      }  // &__block
+    }  // &__content
+  }  // &-wrap
+}
+
+.block__top {
+  @include mq(pc) {
+    margin-bottom: 3.5rem;
+  }
+}
+
+.block__visibility {
+  @include mq(pc) {
+    display: inline-block;
+  }
+  @include mq(tab) {
+    margin-top: 3.5rem;
+  }
+}
+
+/* Salon */
+.salon {
+  background-color: $wwGray;
+  &-wrap {
+    @include wrap;
+    &__content {
+      padding: 0 3.5rem;
+      @include flex($justify: space-between);
+      &__block {
+        width: 45%;
+        & h4 {
+          text-align: center;
+          font-size: 4.0rem;
+          color: $White;
+        }  // & h4
+      }  // &__block
+    }  // &__content
+  }  // &-wrap
+}
+
+.__bg1 {
+  width: 100%;
+  padding: 25% 0;
+  background-image: url(../img/home_salon1.jpg);
+  @include flex;
+  @include bg;
+}
+
+.__bg2 {
+  width: 100%;
+  padding: 25% 0;
+  background-image: url(../img/home_salon2.jpg);
+  @include flex;
+  @include bg;
+}
+
+/* Salon(Breakpoint) */
+.salon {
+  &-wrap {
+    @include mq(tab) {
+      @include flex;
+      flex-direction: column;
+    }
+    &__content {
+      @include mq(tab) {
+        width: 90%;
+        @include flex;
+        flex-direction: column;
+      }
+      &__block {
+        @include mq(tab) {
+          width: 100%;
+          margin-bottom: 3.5rem;
+        }
+        &:last-child {
+          @include mq(tab) {
+            margin-bottom: 0;
+          }
+        }  // &:last-child
+        & h4 {
+          @include mq(pc) {
+            font-size: 3.0rem;
+          }
+          @include mq(sp) {
+            font-size: 3.0rem;
+          }
+        }  // & h4
+      }  // &__block
+    }  // &__content
+  }  // &-wrap
+}
+
+/* Contact */
+.contact {
+  background-image: url(../img/home_contact.jpg);
+  background-size: cover;
+  &-wrap {
+    @include flex;
+    &__content {
+      padding: 7.0rem 3.5rem;
+      background-color: $wwwGray;
+      &__txt {
+        padding: 0 3.5rem;
+        font-size: 2.0rem;
+        & span {
+          padding-bottom: 1.0rem;
+          display: inline-block;
+        }  // & span
+      }  // &__txt
+      &__btn {
+        text-align: center;
+        & a {
+          margin-top: 3.5rem;
+          background-color: $Gray;
+        }  // & a
+      }  // &__btn
+    }  // &__content
+  }  // &-wrap
+}
+
+/* Contact(Breakpoint) */
+.contact {
+  &-wrap {
+    &__content {
+      @include mq(tab) {
+        width: 100%;
+        padding: 3.5rem;
+        margin: 7.0rem 0;
+      }
+      &__txt {
+        @include mq(tab) {
+          font-size: 1.7rem;
+        }
+        @include mq(sp) {
+          padding: 0 0 0 2.0rem;
+          font-size: 1.2rem;
+        }
+      }  // &__txt
+    }  // &__content
+  }  // &-wrap
+}
+
+/* Footer */
+.footer {
+  background-color: $White;
+  &-wrap {
+    @include wrap;
+    &__top {
+      &__ttl {
+        @include flex($justify: flex-start);
+        & a {
+          @include flex;
+        }  // & a
+        &__ttl {
+          margin-left: 1.5rem;
+          font-size: 3.0rem;
+          color: $White;
+          -webkit-text-stroke: 1px $Gray;
+          & span {
+            margin-left: 4.5rem;
+          }  // & span
+        }  // &__ttl
+        &__img img {
+          width: 10.5rem;
+          height: auto;
+        }  // &__img img
+      }  // &__ttl
+      &__nav {
+        &__list {
+          padding: 3.5rem 0;
+          @include flex;
+          &__item a {
+            padding: 0 3.0rem;
+            font-size: 3.0rem;
+            color: $Gray;
+          }  // &__item a
+        }  // &__list
+      }  // &__nav
+      &__sns {
+        @include flex;
+        &__icon {
+          width: auto;
+          height: 5.0rem;
+          padding: 0 3.0rem;
+          & i {
+            font-size: 5.0rem;
+          }  // & i
+        }  // &__icon
+      }  // &__sns
+    }  // &__top
+    &__bottom {
+      padding: 1.0rem 0;
+      @include flex;
+      flex-direction: column;
+      &__txt {
+        width: 60%;
+        margin: 0 auto;
+        &__list {
+          padding-bottom: 0.5rem;
+          @include flex($justify: space-between);
+          &__item {
+            width: 17.0rem;
+            font-size: 1.5rem;
+            text-align: center;
+          }  // &__item
+        }  // &__list
+      }  // &__txt
+    }  // &__bottom
+  }  // &-wrap
+}
+
+/* Footer(Breakpoint) */
+.footer {
+  &-wrap {
+    &__top {
+      &__ttl {
+        @include mq(tab) {
+          @include flex;
+        }
+      }  // &__ttl
+      &__nav {
+        &__list {
+          &__item a {
+            @include mq(tab) {
+              padding: 0 1.0rem;
+              font-size: 2.5rem;
+            }
+            @include mq(sp) {
+              font-size: 1.5rem;
+            }
+          }  // &__item a
+        }  // &__list
+      }  // &__nav
+      &__sns {
+        &__icon {
+          @include mq(tab) {
+            padding: 0 2.0rem;
+          }
+          @include mq(sp) {
+            width: auto;
+            height: 3.0rem;
+          }
+          & i {
+            @include mq(sp) {
+              font-size: 3.0rem;
+            }
+          }  // & i
+        }  // &__icon
+      }  // &__sns
+    }  // &__top
+    &__bottom {
+      &__txt {
+        @include mq(pc) {
+          width: 80%;
+        }
+        &__list {
+          @include mq(tab) {
+            @include flex;
+            flex-direction: column;
+          }
+          &__item {
+            @include mq(sp) {
+              padding-bottom: 0.5rem;
+            }
+            &:last-child {
+              @include mq(sp) {
+                padding-bottom: 0rem;
+              }
+            }  // &:last-child
+          }  // &__item
+        }  // &__list
+      }  // &__txt
+    }  // &__bottom
+  }  // &-wrap
+}

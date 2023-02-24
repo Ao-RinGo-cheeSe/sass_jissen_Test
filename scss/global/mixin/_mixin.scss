@@ -1,0 +1,26 @@
+@use "../setting" as *;
+
+@mixin ttl($ttl__bg-color: $White,$ttl__color: $Black) {
+  padding: 0.5rem 1.0rem;
+  margin-bottom: 3.5rem;
+  font-size: 5.0rem;
+  background-color: $ttl__bg-color;
+  color: $ttl__color;
+  display: inline-block;
+}
+
+@mixin flex($justify: center,$align: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin wrap {
+  width: 85%;
+  margin: 0 auto;
+}
+
+@mixin bg {
+  background-color: rgba(238, 238, 238, 0.4);
+  background-blend-mode: lighten;
+}
